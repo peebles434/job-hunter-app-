@@ -10,7 +10,7 @@ import {
   IconButton,
 } from "@material-ui/core";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     listItem: {
       color: "#FFFFFF",
