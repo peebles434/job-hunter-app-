@@ -14,7 +14,6 @@ export const JobStore = types
   }))
   .actions((self) => ({
     setJobs(job) {
-      //   self.jobMap.set(job);
-      console.log(job);
+      self.jobMap.set(job.id, job);
     },
   }));
