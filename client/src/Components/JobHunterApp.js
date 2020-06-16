@@ -7,7 +7,6 @@ const JobHunterApp = observer(() => {
   return (
     <div>
       <Header />
-      <h1>Job Hunter</h1>
       <JobList />
     </div>
   );
