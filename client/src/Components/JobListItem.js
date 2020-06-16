@@ -27,7 +27,7 @@ export const JobListItem = observer((job) => {
     <ListItem>
       <ListItemText
         primary={job.job.company}
-        secondary={job.job.location}
+        secondary={`${job.job.location} - ${job.job.type}`}
         className={classes.secondary}
       />
     </ListItem>
