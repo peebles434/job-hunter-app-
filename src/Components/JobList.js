@@ -19,14 +19,14 @@ export const JobList = observer(() => {
   const classes = useStyles();
 
   const url = "https://jobs.github.com/positions.json";
-  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+  const proxyUrl = "http://127.0.0.1:8080/";
 
   let getJobs;
 
   fetch(proxyUrl + url)
     .then((response) => response.json())
     .then((jobs) => {
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 1; i++) {
         let job = {
           id: jobs[i].id,
           company: jobs[i].company,
