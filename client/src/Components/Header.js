@@ -67,7 +67,7 @@ export const Header = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Photos
+            Job Hunter
           </Typography>
           {auth && (
             <div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { List, Grid, makeStyles, createStyles } from "@material-ui/core";
 import { JobListItem } from "./JobListItem";
@@ -15,38 +15,44 @@ const useStyles = makeStyles((theme) =>
 
 export const JobList = observer(() => {
   const { jobMapToArray, setJobs } = useJobStore();
+  const [tempJobs, setTempJobs] = useState([]);
 
   const classes = useStyles();
 
   const url = "https://jobs.github.com/positions.json";
-  const proxyUrl = "http://127.0.0.1:8080/";
+  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
-  let getJobs;
+  useEffect(() => {
+    fetch(proxyUrl + url)
+      .then((res) => res.json())
+      .then((result) => {
+        setTempJobs(result);
+      });
+  }, []);
 
-  fetch(proxyUrl + url)
-    .then((response) => response.json())
-    .then((jobs) => {
-      for (let i = 0; i < 1; i++) {
+  useEffect(() => {
+    for (let i = 0; i < tempJobs.length; i++) {
+      if (tempJobs.length > 0) {
         let job = {
-          id: jobs[i].id,
-          company: jobs[i].company,
-          company_logo: jobs[i].company_logo,
-          company_url: jobs[i].company_url,
-          created_at: jobs[i].created_at,
-          description: jobs[i].description,
-          how_to_apply: jobs[i].how_to_apply,
-          location: jobs[i].location,
-          title: jobs[i].title,
-          type: jobs[i].type,
-          url: jobs[i].url,
+          id: tempJobs[i].id,
+          company: tempJobs[i].company,
+          company_logo: tempJobs[i].company_logo,
+          company_url: tempJobs[i].company_url,
+          created_at: tempJobs[i].created_at,
+          description: tempJobs[i].description,
+          how_to_apply: tempJobs[i].how_to_apply,
+          location: tempJobs[i].location,
+          title: tempJobs[i].title,
+          type: tempJobs[i].type,
+          url: tempJobs[i].url,
         };
         setJobs(job);
       }
-    });
+    }
+  }, [tempJobs]);
 
   return (
     <div className={classes.root}>
-      <h1>{getJobs}</h1>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <List dense={true}>
