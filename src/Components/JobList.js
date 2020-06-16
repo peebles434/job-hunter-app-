@@ -14,6 +14,8 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const JobList = observer(() => {
+  const { jobMapToArray, setJobs } = useJobStore();
+
   const classes = useStyles();
 
   const url = "https://jobs.github.com/positions.json";
@@ -24,21 +26,23 @@ export const JobList = observer(() => {
   fetch(proxyUrl + url)
     .then((response) => response.json())
     .then((jobs) => {
-      getJobs = () => {
-        let jobCompany = jobs.company;
-        jobCompany.forEach((company) => {
-          return company;
-        });
-      };
-      for (let i = 0; i < 5; i++) {
-        setJobs({
+      for (let i = 0; i < 50; i++) {
+        let job = {
           id: jobs[i].id,
           company: jobs[i].company,
-        });
+          company_logo: jobs[i].company_logo,
+          company_url: jobs[i].company_url,
+          created_at: jobs[i].created_at,
+          description: jobs[i].description,
+          how_to_apply: jobs[i].how_to_apply,
+          location: jobs[i].location,
+          title: jobs[i].title,
+          type: jobs[i].type,
+          url: jobs[i].url,
+        };
+        setJobs(job);
       }
     });
-
-  const { jobMapToArray, setJobs } = useJobStore();
 
   return (
     <div className={classes.root}>
@@ -48,7 +52,7 @@ export const JobList = observer(() => {
           <List dense={true}>
             {jobMapToArray.map((job) => (
               <Grid key={job[0]}>
-                <JobListItem car={job[1]} />
+                <JobListItem job={job[1]} />
               </Grid>
             ))}
           </List>
