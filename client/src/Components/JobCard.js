@@ -50,7 +50,7 @@ export const JobCard = observer((job) => {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          <p>Posted {findDaysAgo(job)} day(s) ago</p>
+          <p>{findDaysAgo(job)}</p>
           Find {job.job.company}'s Website{" "}
           <Link href={`${linkify(job)}`} color="inherit" target="_blank">
             <b>Here</b>

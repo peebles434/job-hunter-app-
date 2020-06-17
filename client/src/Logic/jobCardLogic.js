@@ -27,7 +27,13 @@ export const findDaysAgo = (job) => {
   let today = new Date().getTime();
   let difference = today - postedDate;
   let daysAgo = Math.floor(difference / 1000 / 60 / 60 / 24);
-  return daysAgo;
+  if (daysAgo === 0) {
+    return "Posted today";
+  } else if (daysAgo === 1) {
+    return "Posted 1 day ago";
+  } else {
+    return `Posted ${daysAgo} days ago`;
+  }
 };
 
 //   Takes company_url string from github jobs and returns only the url
