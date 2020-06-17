@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) =>
 export const JobList = observer(() => {
   const { jobMapToArray, setJobs } = useJobStore();
   const [tempJobs, setTempJobs] = useState([]);
+  const [state, setState] = useState({ apiResponse: "" });
 
   const classes = useStyles();
 
@@ -31,7 +32,7 @@ export const JobList = observer(() => {
   }, []);
 
   useEffect(() => {
-    for (let i = 0; i < tempJobs.length; i++) {
+    for (let i = 0; i < 20; i++) {
       if (tempJobs.length > 0) {
         let job = {
           id: tempJobs[i].id,
@@ -50,6 +51,20 @@ export const JobList = observer(() => {
       }
     }
   }, [tempJobs]);
+
+  const callAPI = () => {
+    fetch("http://localhost:9000/testAPI")
+      .then((res) => res.text())
+      .then((res) => setState({ apiResponse: res }));
+  };
+
+  useEffect(() => {
+    callAPI();
+  }, []);
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   return (
     <div className={classes.root}>
