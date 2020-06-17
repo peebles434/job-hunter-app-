@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { JobCard } from "./JobCard";
 import {
   ListItem,
   ListItemText,
@@ -23,13 +24,5 @@ const useStyles = makeStyles((theme) =>
 
 export const JobListItem = observer((job) => {
   const classes = useStyles();
-  return (
-    <ListItem>
-      <ListItemText
-        primary={job.job.company}
-        secondary={`${job.job.location} - ${job.job.type}`}
-        className={classes.secondary}
-      />
-    </ListItem>
-  );
+  return <JobCard job={job} />;
 });
