@@ -24,5 +24,9 @@ const useStyles = makeStyles((theme) =>
 
 export const JobListItem = observer((job) => {
   const classes = useStyles();
-  return <JobCard job={job} />;
+  return (
+    <div>
+      <JobCard job={job.job} />
+    </div>
+  );
 });
