@@ -1,23 +1,23 @@
-import React from "react";
-import { observer } from "mobx-react";
-import { findDaysAgo, linkify } from "../Logic/jobCardLogic";
-import { useStyles } from "../Styles/jobCardStyles";
-import clsx from "clsx";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import ReactHtmlParser from "react-html-parser";
-import { Link } from "@material-ui/core";
+import React from 'react';
+import { observer } from 'mobx-react';
+import { findDaysAgo, linkify } from '../Logic/jobCardLogic';
+import { useStyles } from '../Styles/jobCardStyles';
+import clsx from 'clsx';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ReactHtmlParser from 'react-html-parser';
+import { Link } from '@material-ui/core';
 
 export const JobCard = observer((job) => {
   const classes = useStyles();
@@ -43,15 +43,19 @@ export const JobCard = observer((job) => {
         title={job.job.company}
         subheader={job.job.location}
       />
-      <CardMedia
+      {/* <CardMedia
         className={classes.media}
+        // className="jobLogo"
         image={job.job.company_logo}
         title={job.job.company}
-      />
+      /> */}
+      <div className="imgContainer">
+        <img className="jobLogo" src={job.job.company_logo} />
+      </div>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           <p>{findDaysAgo(job)}</p>
-          Find {job.job.company}'s Website{" "}
+          Find {job.job.company}'s Website{' '}
           <Link href={`${linkify(job)}`} color="inherit" target="_blank">
             <b>Here</b>
           </Link>
