@@ -32,7 +32,7 @@ export const JobCard = observer((job) => {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+            <img className="jobLogo" src="../../favicon.ico" alt="JH logo" />
           </Avatar>
         }
         action={
@@ -43,15 +43,11 @@ export const JobCard = observer((job) => {
         title={job.job.company}
         subheader={job.job.location}
       />
-      {/* <CardMedia
-        className={classes.media}
-        // className="jobLogo"
-        image={job.job.company_logo}
-        title={job.job.company}
-      /> */}
-      <div className="imgContainer">
-        <img className="jobLogo" src={job.job.company_logo} />
-      </div>
+      <img
+        className="jobLogo"
+        src={job.job.company_logo}
+        alt={job.job.company}
+      />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           <p>{findDaysAgo(job)}</p>

@@ -1,18 +1,18 @@
 //   Takes date ad was posted, manipulates into date(), compares with current date().
 export const findDaysAgo = (job) => {
   const monthArr = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
 
   const isMonthInt = (element) => {
@@ -28,9 +28,9 @@ export const findDaysAgo = (job) => {
   let difference = today - postedDate;
   let daysAgo = Math.floor(difference / 1000 / 60 / 60 / 24);
   if (daysAgo === 0) {
-    return "Posted today";
+    return 'Posted Today!';
   } else if (daysAgo === 1) {
-    return "Posted 1 day ago";
+    return 'Posted Yesterday';
   } else {
     return `Posted ${daysAgo} days ago`;
   }
