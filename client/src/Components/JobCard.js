@@ -31,7 +31,7 @@ export const JobCard = observer((job) => {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
+          <Avatar aria-label="job" className={classes.avatar}>
             R
           </Avatar>
         }
@@ -50,7 +50,8 @@ export const JobCard = observer((job) => {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          <p>{findDaysAgo(job)}</p>
+          {findDaysAgo(job)}
+          <br />
           Find {job.job.company}'s Website{" "}
           <Link href={`${linkify(job)}`} color="inherit" target="_blank">
             <b>Here</b>
