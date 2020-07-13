@@ -6,6 +6,7 @@ import axios from "axios";
 export const JobStore = types
   .model(JOB_STORE, {
     jobMap: types.map(JobModel),
+    searchText: types.optional(types.string, ""),
   })
   .volatile((self) => ({}))
   .views((self) => ({
@@ -14,8 +15,17 @@ export const JobStore = types
     },
   }))
   .actions((self) => ({
+    handleSearch(value) {
+      self.searchText = value;
+    },
+    handleButtonClick() {
+      self.setJobs();
+      console.log(self.searchText);
+    },
+  }))
+  .actions((self) => ({
     setJobs: flow(function* () {
-      const url = "https://jobs.github.com/positions.json";
+      const url = `https://jobs.github.com/positions.json?search=${self.searchText}`;
       const proxyUrl = "https://cors-anywhere.herokuapp.com/";
       const result = yield axios(proxyUrl + url);
       const tempJobs = result.data;
